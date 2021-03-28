@@ -35,7 +35,7 @@ fileRouter.get('/',(req,res)=>{
     let email = req.cookies.email
     fileModel.find({studentemail:email},(err,data)=>{
         if(err){
-            res.json(err);
+            console.log(err)
         }
         else if(data.length>0){
             res.render('file/uploadFile.ejs',{data:data})
@@ -51,7 +51,7 @@ fileRouter.get('/fileSubmited',(req,res)=>{
     FaculityModel.findOne({},function(err,result){
         fileModel.find({studentemail:email},(err,data)=>{
             if(err){
-                res.json(err);
+                console.log(err)
             }
             else if(data.length>0){
                 let ts = Date.now();
@@ -122,9 +122,8 @@ fileRouter.post('/upload',upload.array('filePath',2),(req,res)=>{
                 filePath = filePath[0] + '.pdf'
                 docxConverter(x1,filePath1,function(err,result){
                     if(err){
-                      res.json(err);
+                      console.log(err);
                     }
-                    // console.log('result'+result);
                 });
                 let email = req.cookies.email
                 var temp = new fileModel({
@@ -136,7 +135,7 @@ fileRouter.post('/upload',upload.array('filePath',2),(req,res)=>{
                 })
                 temp.save((err,data)=>{
                     if(err){
-                        res.json(err);
+                        console.log(err)
                     }
                     let email = req.cookies.email
                     var content = 'Bạn vừa upload 1 bài báo lên hệ thống. Name: ' + x;
@@ -148,7 +147,7 @@ fileRouter.post('/upload',upload.array('filePath',2),(req,res)=>{
                     }
                     transporter.sendMail(mainOptions, function(err, info){
                         if (err) {
-                           res.json(err);
+                            console.log(err);
                         } 
                     });
                     let slug = req.cookies.slug
@@ -165,7 +164,7 @@ fileRouter.post('/upload',upload.array('filePath',2),(req,res)=>{
                     }
                         transporter.sendMail(mainOptions2, function(err, info){
                             if (err) {
-                               res.json(err);
+                                console.log(err);
                             } 
                     });
                     })
@@ -186,7 +185,7 @@ fileRouter.post('/upload',upload.array('filePath',2),(req,res)=>{
                     for(var i = 0;i<2;i++){
                         if(req.files[i].originalname.endsWith('png')||req.files[i].originalname.endsWith('jpg')||req.files[i].originalname.endsWith('gif')){
                             imgpath = 'uploads/'+  req.files[i].originalname
-                            // console.log(imgpath)
+                            console.log(imgpath)
                         }
                         else if(req.files[i].originalname.endsWith('docx')){
                             y = req.files[i].originalname
@@ -200,9 +199,9 @@ fileRouter.post('/upload',upload.array('filePath',2),(req,res)=>{
                         filePath = filePath[0] + '.pdf'
                         docxConverter(x1,filePath1,function(err,result){
                             if(err){
-                           res.json(err);
+                            console.log(err);
                             }
-                            // console.log('result'+result);
+                            console.log('result'+result);
                         }); 
                         let email = req.cookies.email
                         var temp = new fileModel({
@@ -215,7 +214,7 @@ fileRouter.post('/upload',upload.array('filePath',2),(req,res)=>{
                         })
                         temp.save((err,data)=>{
                             if(err){
-                                res.json(err);
+                                console.log(err)
                             }
                             let email = req.cookies.email
                             var content = 'Bạn vừa upload 1 bài báo lên hệ thống. Name: ' + x;
@@ -227,7 +226,7 @@ fileRouter.post('/upload',upload.array('filePath',2),(req,res)=>{
                             }
                             transporter.sendMail(mainOptions, function(err, info){                     
                                 if (err) {
-                                   res.json(err);
+                                    console.log(err);
                                 } 
                             });
                             let slug = req.cookies.slug
@@ -244,7 +243,7 @@ fileRouter.post('/upload',upload.array('filePath',2),(req,res)=>{
                             }
                                 transporter.sendMail(mainOptions2, function(err, info){
                                     if (err) {
-                                       res.json(err);
+                                        console.log(err);
                                     } 
                             });
                             })
@@ -283,9 +282,9 @@ fileRouter.post('/upload2',upload.array('filePath',2),(req,res)=>{
                         //tiến hành chuyển từ docs sang pdf
                         docxConverter(x1,filePath1,function(err,result){
                             if(err){
-                           res.json(err);
+                            console.log(err);
                             }
-                            // console.log('result'+result);
+                            console.log('result'+result);
                         });
                         let email = req.cookies.email
                         let _id = req.body.idfile
@@ -307,7 +306,7 @@ fileRouter.post('/upload2',upload.array('filePath',2),(req,res)=>{
                             }
                             transporter.sendMail(mainOptions, function(err, info){
                                 if (err) {
-                                   res.json(err);
+                                    console.log(err);
                                 } 
                             });
                             let slug = req.cookies.slug
@@ -324,7 +323,7 @@ fileRouter.post('/upload2',upload.array('filePath',2),(req,res)=>{
                             }
                                 transporter.sendMail(mainOptions2, function(err, info){
                                     if (err) {
-                                       res.json(err);
+                                        console.log(err);
                                     } 
                                 });
                         })
@@ -345,7 +344,7 @@ fileRouter.post('/upload2',upload.array('filePath',2),(req,res)=>{
                     for(var i = 0;i<2;i++){
                         if(req.files[i].originalname.endsWith('png')||req.files[i].originalname.endsWith('jpg')||req.files[i].originalname.endsWith('gif')){
                             imgpath = 'uploads/'+  req.files[i].originalname
-                            // console.log(imgpath)
+                            console.log(imgpath)
                         }
                         else if(req.files[i].originalname.endsWith('docx')){
                             y = req.files[i].originalname
@@ -363,7 +362,7 @@ fileRouter.post('/upload2',upload.array('filePath',2),(req,res)=>{
                     filePath = filePath[0] + '.pdf'        
                     docxConverter(x1,filePath1,function(err,result){
                         if(err){
-                           res.json(err);
+                            console.log(err);
                         }
                     });
                 
@@ -389,7 +388,7 @@ fileRouter.post('/upload2',upload.array('filePath',2),(req,res)=>{
                         //bắt đầu gửi mail
                         transporter.sendMail(mainOptions, function(err, info){
                             if (err) {
-                               res.json(err);
+                                console.log(err);
                             } 
                         });
                         let slug = req.cookies.slug
@@ -406,7 +405,7 @@ fileRouter.post('/upload2',upload.array('filePath',2),(req,res)=>{
                         }
                         transporter.sendMail(mainOptions2, function(err, info){
                             if (err) {
-                               res.json(err);
+                                console.log(err);
                             } 
                         });    
                         })
@@ -437,8 +436,8 @@ fileRouter.post('/abc',(req,res)=>{
     var archive = archiver('zip');
     var a = req.body.hobby
     output.on('close', function () {
-        // console.log(archive.pointer() + ' total bytes');
-        // console.log('archiver has been finalized and the output file descriptor has closed.');
+        console.log(archive.pointer() + ' total bytes');
+        console.log('archiver has been finalized and the output file descriptor has closed.');
     });
     archive.on('error', function(err){
         throw err;
@@ -446,6 +445,7 @@ fileRouter.post('/abc',(req,res)=>{
     archive.pipe(output);
         for(var n = 1; n <a.length; n++ ){
             file = "public/" +  a[n]
+            console.log("file name là:", file)
             archive.append(file_system.createReadStream(file), { name: file })
         }
     archive.finalize();   
