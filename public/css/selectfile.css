@@ -1,0 +1,45 @@
+.btn{
+    width: 90px;
+    height: 30px;
+    border-radius: 10px;
+    margin: 15px 10px auto auto;
+    background-color: #3b69e6;
+    border: none;
+    color   :#fff;
+}
+.btn:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.swap{
+    width: 300px;
+    height: auto;
+    margin: 15px auto auto 20px;
+    display: inline-block;
+}
+.swap input{
+    font-size: 17px;
+    float: left;
+    margin-top: 5px;
+}
+.swap label{
+    font-size: 17px;
+    float: left;
+    color: #000;
+}
+form label{
+    color: #fff;
+}
+#btn{
+    width: 90px;
+    height: 40px;
+    border-radius: 10px;
+    margin-top: 15px;
+    background-color: #3b69e6;
+    border: none;
+    color   :#fff;
+}
+#btn:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
