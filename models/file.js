@@ -37,7 +37,6 @@ var picSchema= new mongoose.Schema({
     },
     filePathAnh: String,
     filePathAnh2: String,
-
 })
 
 var picModel = mongoose.model('file',picSchema);
