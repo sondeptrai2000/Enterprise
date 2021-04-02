@@ -94,9 +94,10 @@ fileRouter.get('/fileSubmited',(req,res)=>{
 
 // set up mail sever
 var transporter =  nodemailer.createTransport({ 
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
+    pool: true,
+  host: "smtp.example.com",
+  port: 465,
+  secure: true, // use TLS
     auth: {
         user: 'nguyenminhsonhandsome@gmail.com', 
         pass: 'minhson123a' 
