@@ -103,6 +103,7 @@ var transporter =  nodemailer.createTransport({
     });
 
 
+
 fileRouter.post('/upload',upload.array('filePath',2),(req,res)=>{
     x = req.files[0].originalname
     if(req.files.length == 1){
