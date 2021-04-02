@@ -132,28 +132,34 @@ fileRouter.post('/upload',upload.array('filePath',2),(req,res)=>{
                 })
                 temp.save((err,data)=>{
                     let email = req.cookies.email
-                    var content = 'Bạn vừa upload 1 bài báo lên hệ thống. Name: ' + x;
+                    var content = 'You have just uploaded an article to the system. Name: ' + x;
                     var mainOptions = { 
                         from: 'NQH-Test nodemailer',
                         to: email,  
-                        subject: 'Test Nodemailer',
+                        subject: 'Notification',
                         text: content 
                     }
                     transporter.sendMail(mainOptions, function(err, info){
+                        if(err){
+                            console.log(err)
+                        }
                     });
                     let slug = req.cookies.slug
                     AccountModel.findOne({
                         role: "teacher",
                         slug: slug
                     },function(err, result){
-                        var content = email + 'vừa upload 1 bài báo lên hệ thống. Name: ' + x;
+                        var content = email + 'just uploaded an article to the system. Name: ' + x;
                         var mainOptions2 = {
                         from: 'NQH-Test nodemailer',
                         to: result.email,  
-                        subject: 'bài đăng mới',
+                        subject: 'Notification',
                         text: content 
                     }
                         transporter.sendMail(mainOptions2, function(err, info){
+                            if(err){
+                                console.log(err)
+                            }
                     });
                     })
                     res.redirect('/file')
@@ -197,11 +203,11 @@ fileRouter.post('/upload',upload.array('filePath',2),(req,res)=>{
                         })
                         temp.save((err,data)=>{
                             let email = req.cookies.email
-                            var content = 'Bạn vừa upload 1 bài báo lên hệ thống. Name: ' + x;
+                            var content = 'You have just uploaded an article to the system. Name: ' + x;
                             var mainOptions = { 
                                 from: 'NQH-Test nodemailer',
                                 to: email,  
-                                subject: 'Test Nodemailer',
+                                subject: 'Notification',
                                 text: content 
                             }
                             transporter.sendMail(mainOptions, function(err, info){                     
@@ -211,11 +217,11 @@ fileRouter.post('/upload',upload.array('filePath',2),(req,res)=>{
                                 role: "teacher",
                                 slug: slug
                             },function(err, result){
-                                var content = email + 'vừa upload 1 bài báo lên hệ thống. Name: ' + x;
+                                var content = email + 'just uploaded an article to the system. Name: ' + x;
                                 var mainOptions2 = { 
                                 from: 'NQH-Test nodemailer',
                                 to: result.email,  
-                                subject: 'bài đăng mới',
+                                subject: 'Notification',
                                 text: content
                             }
                                 transporter.sendMail(mainOptions2, function(err, info){
@@ -270,11 +276,11 @@ fileRouter.post('/upload2',upload.array('filePath',2),(req,res)=>{
                                 status2: "not rate",
                         }).then(data=>{
                             let email = req.cookies.email
-                            var content = 'Bạn vừa upload 1 bài báo lên hệ thống. Name: ' + x;
+                            var content = 'You have just uploaded an article to the system. Name: ' + x;
                             var mainOptions = { 
                                 from: 'NQH-Test nodemailer',
                                 to: email, 
-                                subject: 'Test Nodemailer',
+                                subject: 'Notification',
                                 text: content 
                             }
                             transporter.sendMail(mainOptions, function(err, info){
@@ -287,11 +293,11 @@ fileRouter.post('/upload2',upload.array('filePath',2),(req,res)=>{
                                 role: "teacher",
                                 slug: slug
                             },function(err, result){
-                                var content = email + 'vừa upload 1 bài báo lên hệ thống. Name: ' + x;
+                                var content = email + 'just uploaded an article to the system. Name: ' + x;
                                 var mainOptions2 = { 
                                 from: 'NQH-Test nodemailer',
                                 to: result.email,  
-                                subject: 'bài đăng mới',
+                                subject: 'Notification',
                                 text: content 
                             }
                                 transporter.sendMail(mainOptions2, function(err, info){
@@ -347,11 +353,11 @@ fileRouter.post('/upload2',upload.array('filePath',2),(req,res)=>{
                             filePathAnh2:imgpath
                     }).then(data=>{
                         //nội dung mail
-                        var content = 'Bạn vừa upload 1 bài báo lên hệ thống. Name: ' + x;
+                        var content = 'You have just uploaded an article to the system. Name: ' + x;
                         var mainOptions = { 
                             from: 'NQH-Test nodemailer',
                             to: email, 
-                            subject: 'Test Nodemailer',
+                            subject: 'Notification',
                             text: content //nội dungdung
                         }
                         //bắt đầu gửi mail
@@ -362,11 +368,11 @@ fileRouter.post('/upload2',upload.array('filePath',2),(req,res)=>{
                             role: "teacher",
                             slug: slug
                         },function(err, result){
-                            var content = email + 'vừa upload 1 bài báo lên hệ thống. Name: ' + x;
+                            var content = email + 'just uploaded an article to the system. Name: ' + x;
                             var mainOptions2 = { 
                             from: 'NQH-Test nodemailer',
                             to: result.email,  
-                            subject: 'bài đăng mới',
+                            subject: 'Notification',
                             text: content 
                         }
                         transporter.sendMail(mainOptions2, function(err, info){
